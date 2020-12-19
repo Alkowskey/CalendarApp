@@ -9,7 +9,7 @@ import sample from './Controllers/sample';
 const NAMESPACE = 'Server';
 const router = express();
 
-//Logging request
+// Logging request
 
 router.use((req, res, next)=>{
     logging.info(NAMESPACE, `METHOD = ${req.method}, URL = ${req.url},
@@ -21,7 +21,7 @@ router.use((req, res, next)=>{
 
     next();
 });
-//Set up parser
+// Set up parser
 router.use(bodyPareser.urlencoded({extended: false}));
 router.use(bodyPareser.json());
 
@@ -37,11 +37,11 @@ router.use((req, res, next)=>{
     next();
 });
 
-//Routes
+// Routes
 
 router.use('/sample', sampleRoutes);
 
-//Errors
+// Errors
 router.use((req, res, next) => {
     const error = new Error('not found');
     return res.status(404).json({
@@ -50,8 +50,8 @@ router.use((req, res, next) => {
 
 });
 
-//Set-up server
+// Set-up server
 
 const httpServer = http.createServer(router);
-httpServer.listen(config.server.port, ()=>logging.info(NAMESPACE, `server running on 
+httpServer.listen(config.server.port, ()=>logging.info(NAMESPACE, `server running on
     ${config.server.hostname}:${config.server.port}`));

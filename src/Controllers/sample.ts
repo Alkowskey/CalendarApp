@@ -1,6 +1,8 @@
 import {Request, Response, NextFunction} from 'express';
 import logging from '../config/logging';
 
+import {User} from '../Models/User';
+
 const NAMESPACE = 'Sample Controller'
 
 const sampleHealthCheck = (req: Request, res: Response, next:NextFunction)=>{
@@ -11,4 +13,10 @@ const sampleHealthCheck = (req: Request, res: Response, next:NextFunction)=>{
     });
 };
 
-export default{sampleHealthCheck};
+const sampleUserCheck = (req: Request, res: Response, next:NextFunction)=>{
+    logging.info(NAMESPACE, `Sample user route called.`);
+
+    return res.status(200).json(new User(1, 'Alek', 'Red'));
+};
+
+export default{sampleHealthCheck, sampleUserCheck};
