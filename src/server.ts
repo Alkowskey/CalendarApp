@@ -1,9 +1,9 @@
 import http from 'http';
 import express from 'express';
-import config from './config/config';
+import config from './config/configServer';
 import bodyPareser from 'body-parser';
 import logging from './config/logging';
-import sampleRoutes from './Routes/sample';
+import UserRoute from './Routes/UserRoute';
 import sample from './Controllers/sample';
 
 import {sequelize} from "./sequelize";
@@ -43,7 +43,7 @@ router.use((req, res, next)=>{
 
 // Routes
 
-router.use('/sample', sampleRoutes);
+router.use('/Users', UserRoute);
 
 // Errors
 router.use((req, res, next) => {

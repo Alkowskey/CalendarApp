@@ -13,12 +13,12 @@ const sampleHealthCheck = (req: Request, res: Response, next:NextFunction)=>{
     });
 };
 
-const addUser = (req: Request, res: Response, next:NextFunction)=>{
+const addUser = async (req: Request, res: Response, next:NextFunction)=>{
     logging.info(NAMESPACE, `Sample addUser route called.`);
-    const user = new User({name: "Alek", color: "Red", birthday: "12-12-1999"});
-    user.save();
+    User.create({name: "Alek", color: "Red", birthday: "12-12-1999"});
 
-    return res.status(200).json(User.findAll());
+
+    return res.status(200).json(await User.findAll());
 };
 
 const sampleUserCheck = (req: Request, res: Response, next:NextFunction)=>{
