@@ -1,7 +1,7 @@
 # CalendarApp
 Calendar App written in TS
 
-Frameworks:
+List of tools that i'm using:
 - Express
 - Node
 - Sequelize
