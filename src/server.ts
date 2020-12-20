@@ -1,15 +1,19 @@
 import http from 'http';
 import express from 'express';
+import config from './config/config';
 import bodyPareser from 'body-parser';
 import logging from './config/logging';
-import config from './config/config';
 import sampleRoutes from './Routes/sample';
 import sample from './Controllers/sample';
+
+import {sequelize} from "./sequelize";
 
 const NAMESPACE = 'Server';
 const router = express();
 
 // Logging request
+
+
 
 router.use((req, res, next)=>{
     logging.info(NAMESPACE, `METHOD = ${req.method}, URL = ${req.url},
@@ -50,8 +54,14 @@ router.use((req, res, next) => {
 
 });
 
+//Set-up Sequelize
+sequelize.sync({force: true});
+
 // Set-up server
 
 const httpServer = http.createServer(router);
+/*httpServer.listen(4200, ()=>logging.info(NAMESPACE, `server running on`));*/
+logging.warn(NAMESPACE, "PORT TEST", config.server.port);
+    
 httpServer.listen(config.server.port, ()=>logging.info(NAMESPACE, `server running on
     ${config.server.hostname}:${config.server.port}`));

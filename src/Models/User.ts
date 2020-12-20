@@ -1,13 +1,27 @@
-export class User{
-    constructor(UserId: number, Name: string, Color: string){
-        this.UserId = UserId;
-        this.Name = Name;
-        this.Color = Color;
-        this.Rooms = ['1','2'];
-    }
-    UserId : number;
-    Name : string;
-    Color : string;
-    Rooms : string[];
+import {Table, Column, Model, HasMany, CreatedAt, UpdatedAt, PrimaryKey, AutoIncrement} from 'sequelize-typescript';
+ 
+@Table
+export class User extends Model<User> {
+  @PrimaryKey
+  @AutoIncrement
+  @Column
+  UserId: number;
 
+  @Column
+  name: string;
+
+  @Column
+  Color: string;
+ 
+  @Column
+  birthday: Date;
+
+  @CreatedAt
+  creationDate: Date;
+ 
+  @UpdatedAt
+  updatedOn: Date;
+ 
+  /*@HasMany(() => Room)
+  rooms: Room[];*/
 }

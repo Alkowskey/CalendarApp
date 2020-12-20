@@ -13,10 +13,18 @@ const sampleHealthCheck = (req: Request, res: Response, next:NextFunction)=>{
     });
 };
 
+const addUser = (req: Request, res: Response, next:NextFunction)=>{
+    logging.info(NAMESPACE, `Sample addUser route called.`);
+    const user = new User({name: "Alek", color: "Red", birthday: "12-12-1999"});
+    user.save();
+
+    return res.status(200).json(User.findAll());
+};
+
 const sampleUserCheck = (req: Request, res: Response, next:NextFunction)=>{
     logging.info(NAMESPACE, `Sample user route called.`);
 
-    return res.status(200).json(new User(1, 'Alek', 'Red'));
+    return res.status(200).json({status: "it's fine dude, chill!"});
 };
 
-export default{sampleHealthCheck, sampleUserCheck};
+export default{sampleHealthCheck, sampleUserCheck, addUser};
