@@ -30,7 +30,7 @@ const removeUser = async (req: Request, res: Response, next:NextFunction)=>{
 const updateUser = async (req: Request, res: Response, next:NextFunction)=>{
     logging.info(NAMESPACE, `updateUser route called.`);
     const user = await User.findOne({where: {name: req.body.name}});
-    let body = req.body;
+    const body = req.body;
     if(body.newName)
         user.name = body.newName;
     if(body.color)

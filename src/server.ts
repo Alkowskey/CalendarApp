@@ -54,7 +54,7 @@ router.use((req, res, next) => {
 
 });
 
-//Set-up Sequelize
+// Set-up Sequelize
 sequelize.sync({force: true});
 
 // Set-up server
@@ -62,6 +62,6 @@ sequelize.sync({force: true});
 const httpServer = http.createServer(router);
 /*httpServer.listen(4200, ()=>logging.info(NAMESPACE, `server running on`));*/
 logging.warn(NAMESPACE, "PORT TEST", config.server.port);
-    
+
 httpServer.listen(config.server.port, ()=>logging.info(NAMESPACE, `server running on
     ${config.server.hostname}:${config.server.port}`));

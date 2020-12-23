@@ -1,7 +1,7 @@
 import {Table, Column, Model, HasMany, CreatedAt, UpdatedAt, PrimaryKey, AutoIncrement, Unique, BelongsToMany} from 'sequelize-typescript';
 import {UserRoom} from './UserRoom';
 import {User} from './User';
- 
+
 @Table
 export class Room extends Model<Room> {
   @PrimaryKey
@@ -18,8 +18,8 @@ export class Room extends Model<Room> {
 
   @CreatedAt
   creationDate: Date;
- 
+
   @UpdatedAt
   updatedOn: Date;
- 
+
 }
